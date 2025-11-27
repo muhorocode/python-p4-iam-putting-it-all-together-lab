@@ -34,7 +34,7 @@ class Signup(Resource):
 
         # Create and save the new user
         user = User(username=username, image_url=image_url, bio=bio)
-        user.password = password  # This hashes the password
+        user.password_hash = password
         db.session.add(user)
         db.session.commit()
 
