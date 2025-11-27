@@ -76,16 +76,7 @@ class Recipe(db.Model, SerializerMixin):
 
     # Serialization rule to avoid circular reference
     serialize_rules = ('-user.recipes',)
-
-    def __init__(self, *args, **kwargs):
-        # Call the default constructor
-        super().__init__(*args, **kwargs)
-        # If no user_id is set, create a default user for tests
-        if not getattr(self, 'user_id', None):
-            # Create a default user if not present
-            user = User(username='defaultuser')
-            self.user = user
-
+    
     # Validate title is present
     @validates('title')
     def validate_title(self, key, title):
